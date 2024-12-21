@@ -5,33 +5,31 @@ import { API_KEY, imageUrl } from "../Constants/Constant";
 
 function Banner() {
   const [series, setSeries] = useState();
+  const [isFading, setIsFading] = useState(false); // State for transition
 
   const fetchBannerData = () => {
     const randomIndex = Math.floor(Math.random() * 20);
-
 
     axios
       .get(
         `discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=10765&with_watch_monetization_types=flatrate`
       )
       .then((response) => {
-        setSeries(response.data.results[randomIndex]);
-        
-      })
-
-     
+        setIsFading(true); // Start fading out
+        setTimeout(() => {
+          setSeries(response.data.results[randomIndex]); // Update the series
+          setIsFading(false); // Start fading in
+        }, 500); // Match this delay to your CSS transition duration
+      });
   };
 
-
   useEffect(() => {
-
-    fetchBannerData()
+    fetchBannerData();
     const intervalId = setInterval(() => {
       fetchBannerData();
     }, 10000);
 
-    return ()=> clearInterval(intervalId);
-
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
@@ -39,9 +37,11 @@ function Banner() {
       style={{
         backgroundImage: `url(${
           series ? imageUrl + series.backdrop_path : "Loading..."
-        })`
+        })`,
+        opacity: isFading ? 0 : 1, // Handle fading effect
+        transition: "opacity 0.5s ease-in-out" // Smooth transition
       }}
-      className="relative min-h-[50vh] md:min-h-[40vh] lg:h-[75vh] font-sans text-white bg-cover bg-center transition-opacity duration-500 ease-in-out "
+      className="relative min-h-[50vh] md:min-h-[40vh] lg:h-[75vh] font-sans text-white bg-cover bg-center"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-[#131212] from-30% via-[rgba(0,0,0,0.61)] via-50% to-transparent z-10"></div>
 
