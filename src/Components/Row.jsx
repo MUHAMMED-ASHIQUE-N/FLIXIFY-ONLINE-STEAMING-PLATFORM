@@ -32,7 +32,7 @@ function Row(props) {
   if (window.innerWidth >= 768) {
     height = `${window.innerHeight * 0.7}px`;
   } else {
-    height = `${window.innerHeight * 0.2}px`;
+    height = `${window.innerHeight * 0.25}px`;
   }
 
   const opts = {
