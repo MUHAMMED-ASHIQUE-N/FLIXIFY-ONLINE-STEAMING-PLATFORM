@@ -16,3 +16,4 @@ export const fantacyMovies = `discover/movie?api_key=${API_KEY}&language=en-US&w
 export const horrorMovies = `discover/movie?api_key=${API_KEY}&language=en-US&with_genres=27`;
 export const mysteryMovies = `discover/movie?api_key=${API_KEY}&language=en-US&with_genres=9648`;
 export const scienceFiction = `discover/movie?api_key=${API_KEY}&language=en-US&with_genres=878`;
+export const RomanceMovie = `discover/movie?api_key=${API_KEY}&language=en-US&with_genres=10749`;

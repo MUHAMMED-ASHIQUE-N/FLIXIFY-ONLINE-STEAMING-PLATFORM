@@ -15,11 +15,11 @@ function Banner() {
         `discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=10765&with_watch_monetization_types=flatrate`
       )
       .then((response) => {
-        setIsFading(true); // Start fading out
+        setIsFading(true); 
         setTimeout(() => {
-          setSeries(response.data.results[randomIndex]); // Update the series
-          setIsFading(false); // Start fading in
-        }, 500); // Match this delay to your CSS transition duration
+          setSeries(response.data.results[randomIndex]); 
+          setIsFading(false);
+        }, 500); 
       });
   };
 
@@ -38,8 +38,8 @@ function Banner() {
         backgroundImage: `url(${
           series ? imageUrl + series.backdrop_path : "Loading..."
         })`,
-        opacity: isFading ? 0 : 1, // Handle fading effect
-        transition: "opacity 0.5s ease-in-out" // Smooth transition
+        opacity: isFading ? .5 : 1, 
+        transition: "opacity 0.5s ease-in-out"
       }}
       className="relative min-h-[50vh] md:min-h-[40vh] lg:h-[75vh] font-sans text-white bg-cover bg-center"
     >

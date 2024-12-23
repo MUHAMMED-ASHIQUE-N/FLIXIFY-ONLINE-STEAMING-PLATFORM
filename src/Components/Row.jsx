@@ -47,13 +47,13 @@ function Row(props) {
     <div className="bg-black">
       <div className="md:pl-5 pt-5 text-white">
         <h1 className="font-bold ps-5">{props.title}</h1>
-        <div className="posters flex gap-3 p-5 overflow-x-scroll scrollbar-hide">
+        <div className="posters flex gap-4 cursor-pointer p-5 overflow-x-scroll scrollbar-hide">
           {series.map((obj) => (
             <img
               onClick={() => handleTrailer(obj.id)}
               key={obj.id}
               src={obj.poster_path ? imageUrl + obj.poster_path : ""}
-              className="h-64 rounded-md"
+              className="h-64 rounded-md  hover:scale-110 hover:ease-in-out duration-300"
             />
           ))}
         </div>
