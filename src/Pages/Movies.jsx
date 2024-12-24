@@ -2,6 +2,7 @@ import React from 'react'
 import Nvabar from '../Components/Navbar'
 import Row from '../Components/Row'
 import { actionMovies, crimeMovies, fantacyMovies, horrorMovies, mysteryMovies, RomanceMovie, scienceFiction, trillerMovies } from '../Url'
+import Footer from '../Components/Footer'
 
 function Movies() {
   return (
@@ -15,6 +16,7 @@ function Movies() {
      <Row title="Mystery " val='movie'  data={mysteryMovies} />
      <Row title="Science " val='movie'  data={scienceFiction} />
      <Row title="Romance " val='movie'  data={RomanceMovie} />
+     <footer className="md:hidden" ><Footer/></footer>
     </div>
   )
 }

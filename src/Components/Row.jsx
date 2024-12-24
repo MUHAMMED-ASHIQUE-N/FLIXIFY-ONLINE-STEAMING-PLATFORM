@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "../axios";
 import YouTube from "react-youtube";
 import { API_KEY, imageUrl } from "../Constants/Constant";
@@ -8,6 +8,7 @@ import { faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
 function Row(props) {
   const [series, setSeries] = useState([]);
   const [urlId, setUrlId] = useState(null);
+  const videoRef = useRef(null); 
 
   useEffect(() => {
     axios.get(props.data).then((response) => {
@@ -15,13 +16,19 @@ function Row(props) {
     });
   }, [props.data]);
 
+
+ let  isphone = window.innerWidth >= 768;
   const handleTrailer = (id) => {
-    setUrlId(null);
+    setUrlId(null); 
     axios
       .get(`/${props.val}/${id}/videos?api_key=${API_KEY}&language=en-US`)
       .then((response) => {
         if (response.data.results.length !== 0) {
-          setUrlId(response.data.results[0]);
+          setUrlId(response.data.results[0]); 
+       
+          isphone ?    setTimeout(() => {
+            videoRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 100): "" 
         } else {
           console.log("No videos found");
         }
@@ -53,7 +60,7 @@ function Row(props) {
               onClick={() => handleTrailer(obj.id)}
               key={obj.id}
               src={obj.poster_path ? imageUrl + obj.poster_path : ""}
-              className="h-64 rounded-md  hover:scale-110 hover:ease-in-out duration-300"
+              className="h-64 rounded-md hover:scale-110 hover:ease-in-out duration-300"
             />
           ))}
         </div>
@@ -61,10 +68,10 @@ function Row(props) {
 
       <div className="w-full">
         {urlId && (
-          <div className="w-full relative">
+          <div ref={videoRef} className="w-full relative"> 
             <button
-              onClick={() => setUrlId(null)} 
-              className="absolute top-2 right-2 ext-2xl text-white  px-3 t py-1 z-50"
+              onClick={() => setUrlId(null)}
+              className="absolute top-2 right-2 text-2xl text-white px-3 py-1 z-50"
             >
               <FontAwesomeIcon icon={faXmarkCircle} />
             </button>

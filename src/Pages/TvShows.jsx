@@ -2,6 +2,7 @@ import React from 'react'
 import Nvabar from '../Components/Navbar'
 import Row from '../Components/Row'
 import { action, crime, drama, family, mystery, triller } from '../Url'
+import Footer from '../Components/Footer'
 
 function TvShows() {
   return (
@@ -13,6 +14,7 @@ function TvShows() {
      <Row title="Drama" val='tv'  data={drama} />
      <Row title="Family" val='tv'  data={family} />
      <Row title="Mystery" val='tv'  data={mystery} />
+     <footer className="md:hidden" ><Footer/></footer>
     </div>
   )
 }
