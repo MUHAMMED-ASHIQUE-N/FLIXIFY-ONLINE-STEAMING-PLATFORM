@@ -10,7 +10,7 @@ function Footer() {
 
 
   return (
-    <div className=' backdrop-blur-sm bg-[#1a1a1bd5] w-full  fixed bottom-0'>
+    <div className=' backdrop-blur-sm bg-[#161617d5] w-full  fixed bottom-0'>
         <div className='flex justify-around items-center py-5 text-white '>
       <Link to="/"> <FontAwesomeIcon icon={faHome}/> </Link>
       <Link to="/movies"> <img src={movieIcon} alt="" className='w-5' /> </Link>
